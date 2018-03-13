@@ -35,10 +35,7 @@
 	<c:forEach var="data" items="${memo_list}">
 		<hr />
 		<div>
-			<c:out value="${data.title}" />
-		</div>
-		<div>
-			<c:out value="${data.modify}" />
+			<b><c:out value="${data.title}" /></b>  <c:out value="${data.modify}" />
 		</div>
 		<div>
 			<c:forEach var="line" items="${fn:split(data.memo, newLineChar)}">
