@@ -13,9 +13,9 @@ EclipseのMavenプロジェクト(maven-archetype-webapp)で作成したJavaEE +
 
 ## Require
 
-MySQL
-
-設定は`src/main/webapp/META-INF/context.xml`
+`.sample`ファイルを参考に以下のファイルを作成する．
+* `src/main/webapp/META-INF/context.xml`
+* `src/main/webapp/META-INF/memoapp2-ds.xml`
 
 ## Docker
 
