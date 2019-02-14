@@ -8,30 +8,48 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jp.example.www.dao.DaoFactory;
+import jp.example.www.dao.DaoFactory.DaoEm;
+import jp.example.www.dao.DaoFactoryImpl;
 import jp.example.www.dao.MemoappDao;
-import jp.example.www.dao.MemoappDaoImpl;
 
 /**
  * Servlet implementation class MainServlet
  */
 public class MemoAppMain extends HttpServlet {
+
+	// --------------------------------------------------------
+	// field
+	// --------------------------------------------------------
+
 	private static final long serialVersionUID = 1L;
-	MemoappDao dao = new MemoappDaoImpl();
+
+	final MemoappDao dao;
+
+	// --------------------------------------------------------
+	// constructor
+	// --------------------------------------------------------
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public MemoAppMain() {
 		super();
-		// TODO Auto-generated constructor stub
+
+		DaoFactory factory = new DaoFactoryImpl();
+		this.dao = factory.create(DaoEm.MySsql);
 	}
+
+	// --------------------------------------------------------
+	// method
+	// --------------------------------------------------------
 
 	void debug() {
 		System.out.println("---------------------------------------------");
 		debug2();
 	}
 
-	void debug2(){
+	void debug2() {
 
 	}
 
@@ -62,7 +80,6 @@ public class MemoAppMain extends HttpServlet {
 
 		debug();
 
-
 		request.setCharacterEncoding("UTF-8");
 
 		MemoBean memo = new MemoBean();
@@ -75,5 +92,6 @@ public class MemoAppMain extends HttpServlet {
 
 		response.sendRedirect(".");
 	}
+
 
 }

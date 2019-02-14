@@ -5,7 +5,9 @@ import java.util.List;
 import jp.example.www.MemoBean;
 
 public interface MemoappDao {
-    List<MemoBean> getMemos();
+
+	List<MemoBean> getMemos();
 
     void save(MemoBean memo);
+
 }

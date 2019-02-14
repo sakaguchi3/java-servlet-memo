@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 
 import jp.example.www.MemoBean;
 
-public class MemoappDaoImpl implements MemoappDao {
+public class MemoappMysqlDaoImpl implements MemoappDao {
 
     private DataSource getDataSource() {
         Context initContext;
