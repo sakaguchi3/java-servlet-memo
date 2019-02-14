@@ -1,6 +1,7 @@
 package jp.example.www.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,7 +28,7 @@ public class MemoappMysqlDaoImpl implements MemoappDao {
                 ds = (DataSource) initContext.lookup("jdbc/memoapp_db");
                 System.out.println("jdbc/memoapp_db: " + ds);
             } catch (NameNotFoundException e) {
-                //e.printStackTrace();
+                e.printStackTrace();
                 ds = (DataSource) initContext.lookup("java:comp/env/jdbc/memoapp_db");
                 System.out.println("java:/comp/env: " + ds);
             }
@@ -103,19 +104,25 @@ public class MemoappMysqlDaoImpl implements MemoappDao {
             // create table
             smt.executeUpdate(create_table);
 
+
             System.out.println("title: " + memo.getTitle());
             System.out.println("text: " + memo.getMemo());
             String insert_memo = "insert into memo_data (" +
                     "category, title, memo, create_date, modified_date" +
                     ") values (" +
                     "0," +
-                    "'" + memo.getTitle() + "'," +
-                    "'" + memo.getMemo() + "'," +
+                    "?," +
+                    "?," +
                     "cast(now() as datetime)," +
                     "cast(now() as datetime) " +
                     ");";
-            System.out.println("sql: " + insert_memo);
-            smt.executeUpdate(insert_memo);
+
+            PreparedStatement prep = con.prepareStatement(insert_memo);
+            prep.setString(1, memo.getTitle());
+            prep.setString(2, memo.getMemo());
+            prep.executeQuery();
+            System.out.println("sql: " + prep.toString());
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
