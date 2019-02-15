@@ -6,9 +6,11 @@ public interface DaoFactory {
 
 	public enum DaoEm {
 
-		MySsql(1), //
-		MongoDB(2), //
-		Other(2_147_483_647), //
+		MySql(1), //
+		MongoDB(101), //
+		Redis(102), //
+		HBase(103), //
+		Dummy(2_147_483_647), //
 		;
 
 		final int id;
