@@ -37,7 +37,7 @@ public class MemoAppMain extends HttpServlet {
 		super();
 
 		DaoFactory factory = new DaoFactoryImpl();
-		this.dao = factory.create(DaoEm.Dummy);
+		this.dao = factory.create(DaoEm.MySql);
 	}
 
 	// --------------------------------------------------------
